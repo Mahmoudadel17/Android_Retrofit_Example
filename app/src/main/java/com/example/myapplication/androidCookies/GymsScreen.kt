@@ -1,6 +1,8 @@
 package com.example.myapplication.androidCookies
 
 
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Column
@@ -27,6 +29,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.ColorFilter
 import androidx.compose.ui.graphics.vector.ImageVector
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
@@ -50,13 +53,19 @@ fun GymsScreen() {
 @Composable
 fun GymItem(gym:Gym,onIconClick:(Int)-> Unit) {
     val icon = if (gym.isFavorite) Icons.Filled.Favorite else Icons.Filled.FavoriteBorder
+    val context = LocalContext.current
     Card(
         modifier = Modifier.padding(8.dp),
         elevation = 8.dp,
         shape = RoundedCornerShape(16.dp),
     ) {
         Row(verticalAlignment = Alignment.CenterVertically,modifier = Modifier.padding(8.dp),) {
-            GymIcon(Icons.Filled.Place,"Place Icon",Modifier.weight(0.15f))
+            GymIcon(Icons.Filled.Place,"Place Icon",Modifier.weight(0.15f)){
+                val uri = Uri.parse("geo:0,0?q=${gym.place}")
+                val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+                context.startActivity(mapIntent)
+
+            }
             GymDetails(gym,Modifier.weight(0.70f))
             GymIcon(icon,"Favorite Icon",Modifier.weight(0.15f)){
                 onIconClick(gym.id)

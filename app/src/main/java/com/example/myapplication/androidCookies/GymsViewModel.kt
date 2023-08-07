@@ -1,6 +1,9 @@
 package com.example.myapplication.androidCookies
 
 
+import android.content.Context
+import android.content.Intent
+import android.net.Uri
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.setValue
@@ -83,6 +86,11 @@ class GymsViewModel(
         storeSelectedGymsFavorite(gyms[itemIndex])
         state = gyms
     }
+//    fun togglePlaceeState(gym:Gym,context:Context){
+//        val uri = Uri.parse("geo:0,0?q=${gym.place}")
+//        val mapIntent = Intent(Intent.ACTION_VIEW, uri)
+//        context.startActivity(mapIntent)
+//    }
 
     private fun storeSelectedGymsFavorite(gym: Gym){
         val savedHandleList = stateHandle.get<List<Int>?>(FAV_IDS).orEmpty().toMutableList()
