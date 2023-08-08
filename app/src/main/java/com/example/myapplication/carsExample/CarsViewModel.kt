@@ -19,6 +19,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CarsViewModel :ViewModel(){
+
     var state by mutableStateOf(emptyList<Product>())
 
     private var apiService: CarApiService
@@ -35,17 +36,17 @@ class CarsViewModel :ViewModel(){
         apiService = retrofit.create(CarApiService::class.java)
 
 
-        getCars()
+//        getCars()
     }
 
-    fun getCars(){
+    fun getCars(context:Context){
 
         carsCall = apiService.getCarLinks()
         carsCall.enqueue(object :Callback<List<Product>>{
             override fun onResponse(call: Call<List<Product>>, response: Response<List<Product>>) {
                 response.body()?.let {
-//                  Toast.makeText(context,"hello ${it.size}    Type of obj:   ${it[5].id}",Toast.LENGTH_SHORT).show()
-                    state = it.toMutableList()
+                  Toast.makeText(context,"hello ${it.size}   TITLE: ${it[0].title}",Toast.LENGTH_SHORT).show()
+                   state = it
                 }
             }
 

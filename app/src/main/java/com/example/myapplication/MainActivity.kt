@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.myapplication.androidCookies.GymsScreen
 import com.example.myapplication.carsExample.AllProducts
+import com.example.myapplication.tasks.TasksScreen
 import com.example.myapplication.ui.theme.MyApplicationTheme
 
 class MainActivity : ComponentActivity() {
@@ -24,9 +25,10 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GymsScreen()
+//                   GymsScreen()
 //                   ListImages()
-//                     AllProducts()
+//                   AllProducts()
+                    TasksScreen()
                 }
             }
         }

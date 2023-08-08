@@ -41,7 +41,7 @@ val cars = listOf(
 @Composable
 fun AllProducts() {
     val vm: CarsViewModel = viewModel()
-//    vm.getCars(LocalContext.current)
+    vm.getCars(LocalContext.current)
     LazyColumn{
         items(vm.state){ product ->
             ProductCard(product = product){callBackProduct ->
@@ -77,7 +77,7 @@ fun ProductCard(product: Product, buyStateCallBack :(Product) -> Unit) {
             )
             Row ( verticalAlignment = Alignment.CenterVertically){
                 Spacer(modifier = Modifier.width(20.dp))
-                Text(text = product.title, fontSize = 20.sp, modifier = Modifier.padding(bottom = 4.dp))
+                Text(text = "New Car", fontSize = 20.sp, modifier = Modifier.padding(bottom = 4.dp))
                 Spacer(modifier = Modifier.weight(1f))
                 Button(onClick = {buyStateCallBack(product)}) {
                    Text(text = "Buy")
